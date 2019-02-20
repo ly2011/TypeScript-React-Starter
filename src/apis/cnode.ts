@@ -6,7 +6,7 @@ type topicParams = {
   id?: string
   [prop: string]: string | undefined
 }
-export const getTopics = ({ page = 1, tab = 'share', limit = 12, mdrender = 'false' } = {}) =>
+export const getTopics = ({ page = 1, tab = 'share', limit = 20, mdrender = 'false' } = {}) =>
   request({
     baseURL: BASE_URL,
     method: 'get',

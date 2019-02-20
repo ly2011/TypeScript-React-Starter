@@ -1,0 +1,82 @@
+dd,
+dt,
+li {
+  line-height: 20px;
+}
+a.dark,
+a.dark:active,
+a.dark:link,
+a.dark:visited {
+  color: #666;
+  text-decoration: none;
+}
+ol.inline,
+ol.unstyled,
+ul.inline,
+ul.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+.panel .inner .unstyled li div,
+.topic_title_wrapper,
+.user_name,
+a.dark,
+a.topic_title {
+  text-overflow: ellipsis;
+}
+.big {
+  font-size: 14px;
+}
+.col_fade {
+  color: #ababab;
+}
+.header .col_fade {
+  color: #444;
+}
+.content .changes,
+.cell,
+.unstyled li div,
+.user_name,
+a.dark,
+a.topic_title {
+  overflow: hidden;
+}
+.panel {
+  margin-bottom: 13px;
+}
+.panel .inner,
+.panel .inner li {
+  line-height: 2em;
+}
+.panel .inner a {
+  color: #778087;
+}
+.panel .inner {
+  padding: 10px;
+  border-radius: 0 0 3px 3px;
+}
+.panel .header {
+  padding: 10px;
+  background-color: #f6f6f6;
+  border-radius: 3px 3px 0 0;
+}
+.panel .header.topic_header,
+.panel .inner {
+  background-color: #fff;
+}
+.panel .inner.post,
+.panel .inner.reply,
+.panel .inner.topic,
+.panel .inner.userinfo,
+.panel .inner.user_info {
+  padding: 10px;
+  border-top: 1px solid #e5e5e5;
+}
+.cell {
+  position: relative;
+  padding: 10px 0 10px 10px;
+  font-size: 14px;
+}
+.sep10 {
+  height: 10px;
+}

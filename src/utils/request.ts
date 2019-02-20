@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-import { BASE_API } from '@/config'
+import { BASE_API } from '../config'
 
 // 设置默认请求头
 axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'

@@ -1,0 +1,336 @@
+body {
+  background-color: #e1e1e1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+/* html {
+  box-sizing: border-box;
+}
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+} */
+
+a:active,
+a:focus,
+div:focus {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: '';
+  clear: both;
+  height: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  /*   font-family: 'Microsoft Yahei', Helvetica, Helvetica Neue, Hiragino Sans GB,
+    WenQuanYi Micro Hei, sans-serif;
+  font-size: 14px;
+  color: #333;
+  overflow-x: hidden;
+  overflow-y: hidden; */
+}
+
+html,
+body {
+  height: 100%;
+}
+html,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+blockquote,
+p,
+img {
+  padding: 0;
+  margin: 0;
+}
+
+*html,
+*html body {
+  // background-image: url(about:blank);
+  background-attachment: fixed;
+}
+
+img {
+  vertical-align: top;
+  border: none;
+}
+
+button,
+select,
+textarea {
+  outline: none;
+}
+
+figure,
+form,
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+img,
+object {
+  max-width: 100%;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+input,
+textarea {
+  color: #666;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+input[type='password']::-ms-reveal {
+  display: none;
+}
+
+a {
+  color: #4c4c4c;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover {
+  color: #02b3ff;
+  text-decoration: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input {
+  box-shadow: none;
+}
+
+b {
+  font-weight: normal;
+}
+
+cite,
+em,
+i {
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+h6 {
+  font-size: 10px;
+}
+
+h3,
+h4,
+h5 {
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+a:focus {
+  outline: none;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #c0c4cc;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #c0c4cc;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #c0c4cc;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #c0c4cc;
+}
+
+body,
+input,
+p,
+textarea {
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.container {
+  /*   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; */
+}
+
+.table-list > .el-table .el-table__body td .cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// pagination
+.pagination {
+  padding: 40px 0;
+  background-color: #fff;
+  .el-pagination {
+    font-weight: normal;
+    .el-button {
+      &.jump-page-btn {
+        margin-left: 24px;
+        &.el-button--primary {
+          color: #fff;
+          background-color: #409eff;
+          border-color: #409eff;
+          &:focus,
+          &:hover {
+            background: #66b1ff;
+            border-color: #66b1ff;
+            color: #fff;
+          }
+          &.is-active,
+          &:active {
+            background: #3a8ee6;
+            border-color: #3a8ee6;
+            color: #fff;
+          }
+          &:active {
+            outline: 0;
+          }
+          &.is-disabled,
+          &.is-disabled:active,
+          &.is-disabled:focus,
+          .is-disabled:hover {
+            color: #fff;
+            background-color: #a0cfff;
+            border-color: #a0cfff;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main {
+  width: 90%;
+  max-width: 1400px;
+  min-width: 960px;
+  margin: 15px auto;
+  min-height: 400px;
+  .content {
+    padding: 0;
+    margin-right: 305px;
+  }
+  .sidebar {
+    width: 290px;
+    float: right;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
+
+// el-card
+.el-card {
+  .el-card__header {
+    padding: 10px;
+  }
+  .el-card__body {
+    padding: 10px;
+  }
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+img {
+  width: auto\9;
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}

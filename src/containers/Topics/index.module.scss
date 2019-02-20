@@ -3,3 +3,18 @@
   background-color: #f6f6f6;
   border-radius: 3px 3px 0 0;
 }
+.topic_tab {
+  margin: 0 10px;
+  color: #80bd01;
+}
+
+.topic_tab.current_tab {
+  background-color: #80bd01;
+  color: #fff;
+  padding: 3px 4px;
+  border-radius: 3px;
+}
+
+.topic_tab:hover {
+  text-decoration: none;
+}
