@@ -85,7 +85,7 @@ class NavBar extends React.Component<NavBarProps, NavBarState> {
                 if (nav.show) {
                   return (
                     <li key={nav.name || nav.path}>
-                      <Link to={{ pathname: nav.name }}>{nav.title}</Link>
+                      <Link to={{ pathname: nav.path }}>{nav.title}</Link>
                     </li>
                   )
                 }

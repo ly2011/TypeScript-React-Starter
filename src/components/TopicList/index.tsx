@@ -83,11 +83,17 @@ const getTagInfo = (topic: topicProps) => {
   }
 }
 
-const TopicList = ({ topics }: topicsProps) => (
+const toTopicDetail = (history: any, topic: topicProps) => {
+  const {id} = topic
+  console.log('topic-id: ', id)
+  history.push(`/topic/${id}`)
+}
+
+const TopicList = ({ topics,location,history }: topicsProps) => (
   <div className={styles.topic_list}>
     {
       topics && topics.map((topic) => (
-        <div className={styles.cell} key={topic.id + '-' + Math.random()}>
+        <div className={`cell ${styles.cell}`} key={topic.id + '-' + Math.random()}>
           <a href="javascript:;" className={`${styles.user_avatar} pull-left`} onClick={() => {
             console.log('click')
           }}>
@@ -114,7 +120,7 @@ const TopicList = ({ topics }: topicsProps) => (
             <span className={`${styles.tag} ${styles[getTagInfo(topic).className]}`}>
               {getTagInfo(topic).text}
             </span>
-            <a href="javascript:;" className={styles.topic_title} title={topic.title} onClick={() => {console.log('click3')}}>
+            <a href="javascript:;" className={styles.topic_title} title={topic.title} onClick={() => toTopicDetail(history, topic)}>
               {topic.title}
             </a>
           </div>

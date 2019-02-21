@@ -125,3 +125,90 @@ textarea#title {
 .markdown_editor.in_preview .markdown_in_preview {
   display: block;
 }
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eee;
+}
+
+/* blockquote p {
+  font-size: 17.5px;
+  font-weight: 300;
+  line-height: 1.25;
+} */
+
+blockquote small {
+  color: #999;
+}
+
+blockquote small:before {
+  content: '\2014 \00A0';
+}
+
+blockquote.pull-right {
+  float: right;
+  padding-right: 15px;
+  padding-left: 0;
+  border-right: 5px solid #eee;
+  border-left: 0;
+}
+
+blockquote.pull-right p,
+blockquote.pull-right small {
+  text-align: right;
+}
+
+blockquote.pull-right small:before {
+  content: '';
+}
+
+blockquote.pull-right small:after {
+  content: '\00A0 \2014';
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+  content: '';
+}
+
+.preview h1,
+.preview h2,
+.preview h3,
+.preview h4,
+.preview h5,
+.preview h6,
+.reply_area h1,
+.reply_area h2,
+.reply_area h3,
+.reply_area h4,
+.reply_area h5,
+.reply_area h6,
+.topic_content h1,
+.topic_content h2,
+.topic_content h3,
+.topic_content h4,
+.topic_content h5,
+.topic_content h6 {
+  margin: 30px 0 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.topic_content h1 {
+  font-size: 32.5px;
+}
+
+.topic_content h2 {
+  font-size: 26px;
+}
+
+.preview p,
+.reply_content p,
+.reply_form p,
+.topic_content p {
+  font-size: 15px;
+  line-height: 1.7em;
+  overflow: auto;
+}

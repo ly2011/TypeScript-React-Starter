@@ -1,7 +1,7 @@
-import * as constants from '../constants'
-import * as api from '../apis/cnode'
 import { Dispatch } from 'redux'
-
+import * as constants from '../constants/topics'
+import * as api from '../apis/cnode'
+import store from '../store'
 import { TopicsState, tabTypes } from '../schemas'
 
 export type SetTopics = {
@@ -20,14 +20,17 @@ export interface topicsParams {
  * @param params topicsParams
  */
 export const getTopics = (params: topicsParams = { page: 1 }) => {
+  const state = store.getState()
+  // console.log('global state: ', state)
   return async (dispatch: Dispatch) => {
-    const { tab = '', page = 1, limit = 20 } = params
+    const { tab = '', page = 1, limit = state.topics.pageInfo.limit } = params
     const clear = true
     dispatch({
       type: constants.SET_LOADING,
       data: true
     })
     const pageInfo = {
+      ...state.topics.pageInfo,
       page,
       limit
     }
@@ -52,11 +55,15 @@ export const getTopics = (params: topicsParams = { page: 1 }) => {
         data: false
       })
     } catch (err) {
-      // if (state.tab === tab) {
-      //   // 拉取更多失败
-      //   commit('setPageInfo', { page: state.pageInfo.page })
-      // }
-      // commit('setLoading', { loading: false })
+      if (state.topics.tab === tab) {
+        // 拉取更多失败
+        dispatch({
+          type: constants.SET_PAGE_INFO,
+          data: {
+            page: state.topics.pageInfo.page
+          }
+        })
+      }
       dispatch({
         type: constants.SET_LOADING,
         data: false

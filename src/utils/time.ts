@@ -1,7 +1,7 @@
 /**
  * 格式化时间
  */
-export const formatDate = (str: number): string => {
+export const formatDate = (str: number | string): string => {
   if (!str) return ''
   const date = new Date(str)
   const time = new Date().getTime() - date.getTime() // 现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）

@@ -1,5 +1,5 @@
 import { TopicsState } from '../schemas'
-import * as constants from '../constants'
+import * as constants from '../constants/topics'
 
 const initState = {
   topics: [],
@@ -7,7 +7,7 @@ const initState = {
   loading: false,
   pageInfo: {
     page: 1,
-    limit: 15,
+    limit: 40,
     total: 1000
   }
 }
@@ -24,10 +24,10 @@ export default function topics(state: TopicsState = initState, action: actionPro
         return { ...state, topics }
       }
 
-      return { ...state, ...{ topics: state.topics.concat(topics) } }
+      return { ...state, topics: state.topics.concat(topics) }
     }
     case constants.SET_LOADING: {
-      return { ...state, ...{ loading: action.data } }
+      return { ...state, loading: action.data }
     }
     case constants.SET_TAB: {
       return {

@@ -18,3 +18,10 @@
 .topic_tab:hover {
   text-decoration: none;
 }
+
+.pagination {
+  height: 40px;
+  margin: 10px 0 0 10px;
+  :global {
+  }
+}
