@@ -45,11 +45,13 @@ export const getTopics = (params: topicsParams = { page: 1 }) => {
       data: pageInfo
     })
     try {
-      const res = await api.getTopics(searchParams)
-      dispatch({
-        type: constants.SET_TOPICS,
-        data: { topics: res.data, clear }
-      })
+      const res: any = await api.getTopics(searchParams)
+      if (res.success) {
+        dispatch({
+          type: constants.SET_TOPICS,
+          data: { topics: res.data, clear }
+        })
+      }
       dispatch({
         type: constants.SET_LOADING,
         data: false

@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom'
 import { bindActionCreators, Dispatch } from 'redux'
-import { Skeleton } from 'antd'
+import { Skeleton, Button, Icon } from 'antd'
 import Loadable from 'react-loadable'
 import { formatDate } from '../../utils/time'
 import Loading from '../../components/Loading'
 
 // 引入actions
-import { getTopic, TopicDetailType } from '../../actions/topic'
+import { getTopic } from '../../actions/topic'
+import { TopicDetailType, getTagInfo } from '../../utils/assist'
 import styles from './index.module.scss'
 
 const SideBar = Loadable({
@@ -19,6 +20,7 @@ const SideBar = Loadable({
 type TopicProps = RouteComponentProps & {
   topic: TopicDetailType
   loading: boolean
+  accesstoken: string
   actions: any
 }
 
@@ -31,7 +33,7 @@ class Topic extends React.Component<TopicProps, any> {
     fetchTopic({ id })
   }
   render() {
-    const { topic, loading } = this.props
+    const { topic, loading, accesstoken } = this.props
     return (
       <section className={styles.container}>
         <div className="main">
@@ -40,13 +42,36 @@ class Topic extends React.Component<TopicProps, any> {
             <div className="panel">
               <Skeleton loading={loading} active>
                 <header className={`header ${styles.header}`}>
-                  <h3 className={styles.title}>{topic.title}</h3>
+                  <h3 className={styles.title}>
+                    <span className={`${styles.tag} ${styles[getTagInfo(topic).className]}`}>
+                      {getTagInfo(topic).text}
+                    </span>
+                    {topic.title}
+                  </h3>
                   <div className={`${styles.changes} clearfix`}>
                     <span>发布于 {formatDate(topic.create_at)}</span>
                     <span>作者 {topic.author && topic.author.loginname}</span>
                     <span>{topic.visit_count} 次浏览</span>
                     <span>最后一次编辑是 {formatDate(topic.last_reply_at)}</span>
-                    <span>来自 {topic.tabName}</span>
+                    <span>来自 {getTagInfo(topic).text}</span>
+                    {accesstoken && topic.is_collect && (
+                      <Button size="small" className={`pull-right`}>
+                        取消收藏
+                      </Button>
+                    )}
+                    {accesstoken && !topic.is_collect && (
+                      <Button type="primary" size="small" className={`pull-right`}>
+                        收藏
+                      </Button>
+                    )}
+                    <div className={styles.manage_topic}>
+                      <Link to={`/topic/${topic.id}/edit`}>
+                        <Icon type="form" style={{ fontSize: '18px' }} />
+                      </Link>
+                      <a href="javascript:;" onClick={() => {}}>
+                        <Icon type="delete" style={{ fontSize: '18px' }} />
+                      </a>
+                    </div>
                   </div>
                 </header>
                 <div className={`${styles.topic} inner`}>
@@ -65,7 +90,8 @@ const topicsActions = { getTopic }
 const mapStateToProps = (state: any, ownProps: any) => {
   return {
     topic: state.topic.topic,
-    loading: state.topic.loading
+    loading: state.topic.loading,
+    accesstoken: state.user.accesstoken
   }
 }
 
