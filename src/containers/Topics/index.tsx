@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
+import { RouteProps, RouteComponentProps } from 'react-router-dom'
 import { Pagination, Skeleton } from 'antd'
 import Loadable from 'react-loadable'
+import { TopicsState } from '@/schemas'
 
 import Loading from '@/components/Loading'
 
@@ -26,7 +28,14 @@ type tabProps = {
   title: string
   tab: string
 }
-class Topics extends React.Component<any, any> {
+
+type TopicsProps = RouteProps &
+  RouteComponentProps &
+  TopicsState & {
+    actions: any
+  }
+
+class Topics extends React.Component<TopicsProps, {}> {
   componentDidMount() {
     const { getTopics: fetchTopics } = this.props.actions
     fetchTopics()
@@ -49,7 +58,7 @@ class Topics extends React.Component<any, any> {
     fetchTopics(params)
   }
   render() {
-    const { topics = [], loading, tab, pageInfo } = this.props
+    const { topics, loading, tab, pageInfo } = this.props
     return (
       <section className={styles.container}>
         <div className="main">
@@ -70,16 +79,20 @@ class Topics extends React.Component<any, any> {
               </header>
               <div className={`inner no-padding ${styles.table_box}`}>
                 <Skeleton loading={loading} active>
-                  <TopicList topics={topics} />
-                  {pageInfo.total && (
-                    <div className={styles.pagination}>
-                      <Pagination
-                        defaultCurrent={pageInfo.page}
-                        pageSize={pageInfo.limit}
-                        total={pageInfo.total}
-                        onChange={this.handlePaginationChange}
-                      />
-                    </div>
+                  {topics && topics.length && (
+                    <Fragment>
+                      <TopicList topics={topics} />
+                      {pageInfo.total && (
+                        <div className={styles.pagination}>
+                          <Pagination
+                            defaultCurrent={pageInfo.page}
+                            pageSize={pageInfo.limit}
+                            total={pageInfo.total}
+                            onChange={this.handlePaginationChange}
+                          />
+                        </div>
+                      )}
+                    </Fragment>
                   )}
                 </Skeleton>
               </div>
@@ -94,7 +107,6 @@ class Topics extends React.Component<any, any> {
 // export default Topics
 const topicsActions = { getTopics }
 const mapStateToProps = (state: any, ownProps: any) => {
-  // console.log('state: ', state)
   return {
     topics: state.topics.topics,
     loading: state.topics.loading,
