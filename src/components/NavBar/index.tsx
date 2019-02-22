@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 
 import { Form, Input, Icon } from 'antd'
@@ -25,7 +25,7 @@ interface NavBarState {
   navBarList: Array<navBarItem>
   accesstoken: boolean
 }
-class NavBar extends React.Component<NavBarProps, NavBarState> {
+class NavBar extends PureComponent<NavBarProps, NavBarState> {
   state = {
     navBarList: [],
     accesstoken: false

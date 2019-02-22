@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Spin } from 'antd'
 const Loading = () => <Spin />
-export default Loading
+export default memo(Loading)

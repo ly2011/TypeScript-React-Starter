@@ -1,6 +1,7 @@
 const {
   override,
   fixBabelImports,
+  addLessLoader,
   addDecoratorsLegacy,
   addBundleVisualizer,
   addWebpackAlias
@@ -15,9 +16,13 @@ module.exports = override(
   addWebpackAlias({
     '@': path.resolve(__dirname, 'src')
   }),
+  addLessLoader({
+    javascriptEnabled: true,
+    modifyVars: { '@primary-color': '#80bd01' }
+  }),
   fixBabelImports('import', {
     libraryName: 'antd',
     libraryDirectory: 'es',
-    style: 'css'
+    style: true
   })
 )

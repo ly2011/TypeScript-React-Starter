@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import { RouteProps } from 'react-router-dom'
 import styles from './index.module.scss'
-class BackTop extends React.Component<any, any> {
+
+type IProps = {
+  visibilityHeight: number | string
+  backPosition: any
+  customStyle: any
+}
+type BackTopProps = RouteProps & IProps
+type BackTopState = {
+  visible: boolean
+  interval: number
+  isMoving: boolean
+}
+class BackTop extends PureComponent<BackTopProps, BackTopState> {
   state = {
     visible: false,
-    interval: undefined,
+    interval: 0,
     isMoving: false
   }
-  static defaultProps = {
-    visibilityHeight: 400,
-    backPosition: 0,
-    customStyle: {
-      width: '24px',
-      top: '75px',
-      right: '0px'
-    }
-  }
+  static defaultProps: IProps
+  // static defaultProps = {
+  //   visibilityHeight: 400,
+  //   backPosition: 0,
+  //   customStyle: {
+  //     width: '24px',
+  //     top: '75px',
+  //     right: '0px'
+  //   }
+  // }
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll)
   }
@@ -25,7 +39,6 @@ class BackTop extends React.Component<any, any> {
     }
   }
   handleScroll = () => {
-    // console.log('handleScroll: ', window.pageYOffset, this.props.visibilityHeight)
     this.setState({
       visible: window.pageYOffset > this.props.visibilityHeight
     })
@@ -37,7 +50,7 @@ class BackTop extends React.Component<any, any> {
     this.setState({
       isMoving: true
     })
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       const next = Math.floor(this.easeInOutQuad(10 * i, start, -start, 500))
       if (next <= this.props.backPosition) {
         window.scrollTo(0, this.props.backPosition)
@@ -66,6 +79,16 @@ class BackTop extends React.Component<any, any> {
       )
     }
     return null
+  }
+}
+
+BackTop.defaultProps = {
+  visibilityHeight: 400,
+  backPosition: 0,
+  customStyle: {
+    width: '24px',
+    top: '75px',
+    right: '0px'
   }
 }
 

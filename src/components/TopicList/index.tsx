@@ -1,13 +1,14 @@
-import React from 'react'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import React, { memo } from 'react'
+import { withRouter, RouteProps, RouteComponentProps } from 'react-router-dom'
 
 import { TopicDetailType, getTagInfo } from '@/utils/assist'
 import { formatDate } from '@/utils/time'
 import styles from './index.module.scss'
 
-type topicsProps = RouteComponentProps & {
-  topics: Array<TopicDetailType>
-}
+type topicsProps = RouteProps &
+  RouteComponentProps & {
+    topics: Array<TopicDetailType>
+  }
 
 const toTopicDetail = (history: any, topic: TopicDetailType) => {
   const { id } = topic
@@ -61,4 +62,4 @@ const TopicList = ({ topics, history }: topicsProps) => (
   </div>
 )
 
-export default withRouter(TopicList)
+export default withRouter(memo(TopicList))
