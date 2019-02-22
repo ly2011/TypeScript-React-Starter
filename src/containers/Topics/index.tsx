@@ -4,21 +4,21 @@ import { bindActionCreators, Dispatch } from 'redux'
 import { Pagination, Skeleton } from 'antd'
 import Loadable from 'react-loadable'
 
-import Loading from '../../components/Loading'
+import Loading from '@/components/Loading'
 
-import { topTabs } from '../../utils/tabs'
+import { topTabs } from '@/utils/tabs'
 
 // 引入actions
-import { getTopics } from '../../actions/topics'
+import { getTopics } from '@/actions/topics'
 
 import styles from './index.module.scss'
 
 const TopicList = Loadable({
-  loader: () => import(/* webpackChunkName: "TopicList" */ '../../components/TopicList'),
+  loader: () => import(/* webpackChunkName: "TopicList" */ '@/components/TopicList'),
   loading: Loading
 })
 const SideBar = Loadable({
-  loader: () => import(/* webpackChunkName: "SideBar" */ '../../components/SideBar'),
+  loader: () => import(/* webpackChunkName: "SideBar" */ '@/components/SideBar'),
   loading: Loading
 })
 

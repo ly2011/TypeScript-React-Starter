@@ -13,7 +13,7 @@ module.exports = override(
   // eslint-disable-next-line
   // process.env.BUNDLE_VISUALIZE === 1 && addBundleVisualizer(),
   addWebpackAlias({
-    $: path.resolve(__dirname, 'src')
+    '@': path.resolve(__dirname, 'src')
   }),
   fixBabelImports('import', {
     libraryName: 'antd',

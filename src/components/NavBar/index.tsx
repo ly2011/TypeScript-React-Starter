@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 import { Form, Input, Icon } from 'antd'
 import { FormComponentProps } from 'antd/lib/form'
-import { navBars } from '../../utils/nav-bars'
-import Logo from '../../assets/img/cnodejs_light.svg'
+import { navBars } from '@/utils/nav-bars'
+import Logo from '@/assets/img/cnodejs_light.svg'
 
 import styles from './index.module.scss'
 

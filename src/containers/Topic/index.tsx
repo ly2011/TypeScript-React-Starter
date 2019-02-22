@@ -4,16 +4,16 @@ import { RouteComponentProps, Link } from 'react-router-dom'
 import { bindActionCreators, Dispatch } from 'redux'
 import { Skeleton, Button, Icon } from 'antd'
 import Loadable from 'react-loadable'
-import { formatDate } from '../../utils/time'
-import Loading from '../../components/Loading'
+import { formatDate } from '@/utils/time'
+import Loading from '@/components/Loading'
 
 // 引入actions
-import { getTopic } from '../../actions/topic'
-import { TopicDetailType, getTagInfo } from '../../utils/assist'
+import { getTopic } from '@/actions/topic'
+import { TopicDetailType, getTagInfo } from '@/utils/assist'
 import styles from './index.module.scss'
 
 const SideBar = Loadable({
-  loader: () => import(/* webpackChunkName: "SideBar" */ '../../components/SideBar'),
+  loader: () => import(/* webpackChunkName: "SideBar" */ '@/components/SideBar'),
   loading: Loading
 })
 

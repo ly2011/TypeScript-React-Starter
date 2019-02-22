@@ -1,5 +1,5 @@
-import { TopicsState } from '../schemas'
-import * as constants from '../constants/topics'
+import { TopicsState } from '@/schemas'
+import * as constants from '@/constants/topics'
 
 const initState = {
   topics: [],

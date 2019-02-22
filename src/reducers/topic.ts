@@ -1,4 +1,4 @@
-import * as constants from '../constants/topic'
+import * as constants from '@/constants/topic'
 
 const initState = {
   topic: {},

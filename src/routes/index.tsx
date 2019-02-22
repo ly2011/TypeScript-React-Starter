@@ -2,19 +2,19 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable'
 
-import Loading from '../components/Loading'
-import Layout from '../layouts/default'
+import Loading from '@/components/Loading'
+import Layout from '@/layouts/default'
 
 const Topics = Loadable({
-  loader: () => import(/* webpackChunkName: "Topics" */ '../containers/Topics'),
+  loader: () => import(/* webpackChunkName: "Topics" */ '@/containers/Topics'),
   loading: Loading
 })
 const Topic = Loadable({
-  loader: () => import(/* webpackChunkName: "Topics" */ '../containers/Topic'),
+  loader: () => import(/* webpackChunkName: "Topics" */ '@/containers/Topic'),
   loading: Loading
 })
 const Login = Loadable({
-  loader: () => import(/* webpackChunkName: "Login" */ '../containers/Login'),
+  loader: () => import(/* webpackChunkName: "Login" */ '@/containers/Login'),
   loading: Loading
 })
 

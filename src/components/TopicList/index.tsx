@@ -1,8 +1,8 @@
 import React from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-import { TopicDetailType, getTagInfo } from '../../utils/assist'
-import { formatDate } from '../../utils/time'
+import { TopicDetailType, getTagInfo } from '@/utils/assist'
+import { formatDate } from '@/utils/time'
 import styles from './index.module.scss'
 
 type topicsProps = RouteComponentProps & {
@@ -40,9 +40,7 @@ const TopicList = ({ topics, history }: topicsProps) => (
           <a
             href="javascript:;"
             className={`${styles.last_time} pull-right`}
-            onClick={() => {
-              console.log('click2')
-            }}
+            onClick={() => toTopicDetail(history, topic)}
           >
             <span className={styles.last_active_time}>{formatDate(topic.last_reply_at)}</span>
           </a>
