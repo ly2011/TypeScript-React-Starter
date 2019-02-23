@@ -54,6 +54,7 @@ a.topic_title {
 .panel .inner {
   padding: 10px;
   border-radius: 0 0 3px 3px;
+  font-size: 13px;
 }
 .panel .header {
   padding: 10px;

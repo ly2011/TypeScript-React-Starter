@@ -1,2 +1,55 @@
 .sidebar {
+  .box_card_content {
+    line-height: 2em;
+
+    &.login_box {
+      a {
+        color: #778087;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .user_avatar {
+    vertical-align: middle;
+    margin-right: 10px;
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 3px;
+    }
+  }
+
+  .user_name {
+    font-size: 16px;
+    max-width: 120px;
+    display: inline-block;
+    vertical-align: middle;
+
+    /* 省略号 */
+  }
+  .board {
+    margin-top: 10px;
+    width: 80%;
+  }
+  .signature {
+    font-style: italic;
+    font-size: 13px;
+  }
+  .friendship_community {
+    li {
+      line-height: 2em;
+    }
+    img {
+      width: 150px;
+    }
+  }
+  &.cnode_app_download {
+    .box_card_content {
+      text-align: center;
+    }
+  }
 }

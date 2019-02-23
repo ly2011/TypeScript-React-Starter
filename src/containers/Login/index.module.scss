@@ -1,0 +1,7 @@
+.login_form {
+  :global {
+    .ant-form-item-label label::after {
+      content: '';
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom'
-
+import { connect } from 'react-redux'
+import { Link, withRouter, RouteProps, RouteComponentProps } from 'react-router-dom'
+import { Dispatch } from 'redux'
 import { Form, Input, Icon } from 'antd'
 import { FormComponentProps } from 'antd/lib/form'
 import { navBars } from '@/utils/nav-bars'
@@ -10,10 +11,15 @@ import styles from './index.module.scss'
 
 const FormItem = Form.Item
 
-interface NavBarProps extends FormComponentProps {
-  [key: string]: any
-  router: any
-}
+// interface NavBarProps extends FormComponentProps {
+//   [key: string]: any
+//   router: any
+// }
+type NavBarProps = RouteProps &
+  RouteComponentProps &
+  FormComponentProps & {
+    accesstoken: string
+  }
 interface navBarItem {
   name: string
   path: string
@@ -23,12 +29,10 @@ interface navBarItem {
 }
 interface NavBarState {
   navBarList: Array<navBarItem>
-  accesstoken: boolean
 }
 class NavBar extends PureComponent<NavBarProps, NavBarState> {
   state = {
-    navBarList: [],
-    accesstoken: false
+    navBarList: []
   }
   handleSubmit = (e: React.FormEvent<HTMLInputElement>): void => {
     e.preventDefault()
@@ -45,7 +49,7 @@ class NavBar extends PureComponent<NavBarProps, NavBarState> {
     const needDeleteWhenNotLogin = ['my-messages', 'logout']
 
     const newNavBars = tmpNavBars.map((nav: navBarItem) => {
-      if (this.state.accesstoken) {
+      if (this.props.accesstoken) {
         nav.show = !needDeleteWhenLogin.includes(nav.name)
       } else {
         nav.show = !needDeleteWhenNotLogin.includes(nav.name)
@@ -55,6 +59,12 @@ class NavBar extends PureComponent<NavBarProps, NavBarState> {
 
     return newNavBars
   }
+  componentWillReceiveProps(nextProps: NavBarProps) {
+    // console.log('NavBar - mounted: ', this.props.accesstoken, this.computedNavBarList())
+    this.setState({
+      navBarList: this.computedNavBarList()
+    })
+  }
   componentDidMount() {
     this.setState({
       navBarList: this.computedNavBarList()
@@ -63,6 +73,7 @@ class NavBar extends PureComponent<NavBarProps, NavBarState> {
   render() {
     const { getFieldDecorator } = this.props.form
     const { navBarList } = this.state
+    // console.log('navBarList: ', navBarList)
     return (
       <div className={styles.navbar}>
         <div className={styles['navbar-inner']}>
@@ -73,9 +84,7 @@ class NavBar extends PureComponent<NavBarProps, NavBarState> {
               </Link>
               <Form layout="inline" onSubmit={this.handleSubmit}>
                 <FormItem>
-                  {getFieldDecorator('q', {
-                    // rules: [{required: true, message: ''}]
-                  })(<Input prefix={<Icon type="search" />} placeholder="请输入内容" />)}
+                  {getFieldDecorator('q', {})(<Input prefix={<Icon type="search" />} placeholder="请输入内容" />)}
                 </FormItem>
               </Form>
             </div>
@@ -100,4 +109,19 @@ class NavBar extends PureComponent<NavBarProps, NavBarState> {
 }
 
 const WrappedNavBar = Form.create()(NavBar)
-export default WrappedNavBar
+const mapStateToProps = (state: any, ownProps: any) => {
+  return {
+    accesstoken: state.user.accesstoken
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => {
+  return {}
+}
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(WrappedNavBar)
+)
+// export default withRouter(WrappedNavBar)

@@ -25,39 +25,45 @@ export type LoginParams = {
  * 登录
  * @param params any
  */
-export const Login = (params: LoginParams) => {
+export const doLogin = (params: LoginParams) => {
   return async (dispatch: Dispatch) => {
-    dispatch({
-      type: constants.SET_LOADING,
-      data: true
-    })
+    // 添加Promise
+    return new Promise(async (resolve, reject) => {
+      dispatch({
+        type: constants.SET_LOADING,
+        data: true
+      })
 
-    try {
-      const res: any = await api.Login(params)
-      const loginInfo: LoginInfo = {}
-      if (res.success) {
-        loginInfo.loginname = res.loginname
-        loginInfo.id = res.id
-        loginInfo.avatar_url = res.avatar_url
+      try {
+        const res: any = await api.Login(params)
+        const loginInfo: LoginInfo = {}
+        if (res.success) {
+          loginInfo.loginname = res.loginname
+          loginInfo.id = res.id
+          loginInfo.avatar_url = res.avatar_url
+          dispatch({
+            type: constants.SET_LOGIN_INFO,
+            data: { loginInfo: loginInfo }
+          })
+          dispatch({
+            type: constants.SET_ACCESS_TOKEN,
+            data: { accesstoken: params.accesstoken }
+          })
+        }
+
         dispatch({
-          type: constants.SET_LOGIN_INFO,
-          data: { loginInfo: loginInfo }
+          type: constants.SET_LOADING,
+          data: false
         })
+
+        resolve(loginInfo)
+      } catch (err) {
         dispatch({
-          type: constants.SET_ACCESS_TOKEN,
-          data: { accesstoken: params.accesstoken }
+          type: constants.SET_LOADING,
+          data: false
         })
+        reject(null)
       }
-
-      dispatch({
-        type: constants.SET_LOADING,
-        data: false
-      })
-    } catch (err) {
-      dispatch({
-        type: constants.SET_LOADING,
-        data: false
-      })
-    }
+    })
   }
 }

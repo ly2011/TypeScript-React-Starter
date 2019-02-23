@@ -86,7 +86,7 @@ class Topic extends React.Component<TopicProps, any> {
   }
 }
 
-const topicsActions = { getTopic }
+const topicActions = { getTopic }
 const mapStateToProps = (state: any, ownProps: any) => {
   return {
     topic: state.topic.topic,
@@ -97,7 +97,7 @@ const mapStateToProps = (state: any, ownProps: any) => {
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => {
   return {
-    actions: bindActionCreators(topicsActions, dispatch)
+    actions: bindActionCreators(topicActions, dispatch)
   }
 }
 export default connect(

@@ -20,12 +20,13 @@ const Login = Loadable({
 
 export const childRoutes = [
   { path: '/', component: Topics, exact: true },
+  { path: '/login', component: Login, exact: true },
   { path: '/topic/:id', component: Topic, exact: true }
 ]
 
 const routes: any = (
   <Switch>
-    <Route path="/login" component={Login} />
+    {/* <Route path="/login" component={Login} /> */}
     <Route path="/" component={Layout} />
   </Switch>
 )
